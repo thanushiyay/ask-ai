@@ -1,0 +1,8 @@
+node_modules/
+web/dist/
+server/.env
+server/.cache/
+.DS_Store
+*.log
+server/results/seed-data.json
+.env

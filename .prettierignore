@@ -1,0 +1,7 @@
+node_modules
+web/dist
+server/.cache
+server/results
+docs
+*.md
+package-lock.json

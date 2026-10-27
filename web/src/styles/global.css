@@ -1,0 +1,334 @@
+/*
+ * Design tokens. Calm, cool neutrals with one spruce accent.
+ * Amber means "waiting for you"; clay means "something needs attention" — never alarm red.
+ */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f0f2f5;
+  --surface-3: #e8ebef;
+  --ink: #18202b;
+  --ink-2: #4a5363;
+  --ink-3: #7b8494;
+  --line: #e3e6eb;
+  --line-2: #d2d7de;
+
+  --accent: #0e6b63;
+  --accent-hover: #0b5a53;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3f1ef;
+  --accent-line: #b7dbd6;
+
+  --ok: #2e7d4f;
+  --ok-soft: #e6f3eb;
+  --wait: #a86a12;
+  --wait-soft: #fbf3e4;
+  --wait-line: #efd9ad;
+  --issue: #a84b5a;
+  --issue-soft: #f8ecee;
+  --issue-line: #ecccd2;
+
+  --user-bubble: #e6ecf0;
+  --scrim: rgba(18, 24, 33, 0.32);
+  --shadow-sm: 0 1px 2px rgba(24, 32, 43, 0.06);
+  --shadow: 0 1px 2px rgba(24, 32, 43, 0.05), 0 6px 16px -6px rgba(24, 32, 43, 0.12);
+  --shadow-lg: 0 24px 48px -12px rgba(24, 32, 43, 0.28);
+
+  --r-xl: 18px;
+  --r-lg: 14px;
+  --r: 10px;
+  --r-sm: 8px;
+
+  --sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --thread-width: 720px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0f1318;
+  --surface: #161b22;
+  --surface-2: #1c222b;
+  --surface-3: #252c37;
+  --ink: #e7eaee;
+  --ink-2: #b3bac5;
+  --ink-3: #848d9a;
+  --line: #262d38;
+  --line-2: #343c49;
+
+  --accent: #4fc1b4;
+  --accent-hover: #6fd0c4;
+  --accent-ink: #0b1a18;
+  --accent-soft: #15302d;
+  --accent-line: #24524d;
+
+  --ok: #6cc893;
+  --ok-soft: #15291e;
+  --wait: #e3ae55;
+  --wait-soft: #2c2314;
+  --wait-line: #4d3d1f;
+  --issue: #e48e9b;
+  --issue-soft: #2d1a1e;
+  --issue-line: #4a2a31;
+
+  --user-bubble: #222a35;
+  --scrim: rgba(0, 0, 0, 0.55);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 20px -8px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 56px -12px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+::selection {
+  background: var(--accent-soft);
+}
+code,
+.mono {
+  font-family: var(--mono);
+  font-size: 0.86em;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+p {
+  margin: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 6px 13px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+}
+.btn:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+.btn.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn.primary:hover:not(:disabled) {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+.btn.ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ink-2);
+}
+.btn.ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.btn.sm {
+  min-height: 28px;
+  padding: 3px 10px;
+  font-size: 12.5px;
+}
+.btn.icon-only {
+  width: 34px;
+  padding: 0;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input {
+  width: 100%;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  font-size: 13.5px;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.input::placeholder {
+  color: var(--ink-3);
+}
+
+.muted {
+  color: var(--ink-3);
+}
+.scroll {
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-2) transparent;
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Shared "notice" block for problems and empty states: calm, specific, actionable. */
+.notice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface);
+  font-size: 14px;
+}
+.notice.issue {
+  border-color: var(--issue-line);
+  background: var(--issue-soft);
+}
+.notice.issue .notice-icon {
+  color: var(--issue);
+}
+.notice.wait {
+  border-color: var(--wait-line);
+  background: var(--wait-soft);
+}
+.notice.wait .notice-icon {
+  color: var(--wait);
+}
+.notice-icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--ink-3);
+}
+.notice strong {
+  display: block;
+  font-weight: 600;
+}
+.notice p {
+  color: var(--ink-2);
+}
+
+/* Shared detail tables (drawer panels) */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.table th {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  font-weight: 500;
+  text-align: left;
+  color: var(--ink-3);
+}
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.table tr.click {
+  cursor: pointer;
+}
+.table tr.click:hover td {
+  background: var(--surface-2);
+}
+.table pre {
+  max-height: 320px;
+  margin: 0;
+  padding: 10px;
+  overflow: auto;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  font: 12px/1.5 var(--mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.good-text {
+  color: var(--ok);
+}
+.issue-text {
+  color: var(--issue);
+}
+
+/* Details drawer enter/leave (the drawer is mounted at the app root). */
+.drawer-enter-active,
+.drawer-leave-active {
+  transition: opacity 0.2s var(--ease);
+}
+.drawer-enter-active .drawer,
+.drawer-leave-active .drawer {
+  transition: transform 0.25s var(--ease);
+}
+.drawer-enter-from,
+.drawer-leave-to {
+  opacity: 0;
+}
+.drawer-enter-from .drawer,
+.drawer-leave-to .drawer {
+  transform: translateX(32px);
+}

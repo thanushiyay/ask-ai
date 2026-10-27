@@ -1,0 +1,35 @@
+{
+  "name": "ask-ai",
+  "private": true,
+  "type": "module",
+  "description": "Ask AI — a natural-language agent over a 50-module, 500-action business platform",
+  "scripts": {
+    "setup": "npm install && npm install --prefix server && npm install --prefix web",
+    "dev": "node scripts/dev.js",
+    "build": "npm run build --prefix web",
+    "start": "npm run build && npm start --prefix server",
+    "test": "npm test --prefix server",
+    "smoke": "npm run smoke --prefix server",
+    "eval": "npm run eval --prefix server --",
+    "bench": "npm run bench --prefix server --",
+    "bench:report": "npm run bench:report --prefix server",
+    "eval:retrieval": "npm run eval:retrieval --prefix server",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run lint && npm test",
+    "eval:dataset": "npm run eval:dataset --prefix server"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-vue": "^9.33.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10"
+  }
+}

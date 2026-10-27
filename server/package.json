@@ -1,0 +1,30 @@
+{
+  "name": "ask-ai-server",
+  "version": "1.0.0",
+  "description": "Ask AI agent backend",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/seed/export.js",
+    "smoke": "vitest run tests/smoke.test.js",
+    "test": "vitest run",
+    "eval": "node src/eval/run.js",
+    "eval:retrieval": "node src/eval/retrieval.js",
+    "bench": "node src/eval/bench.js",
+    "bench:report": "node src/eval/bench.js --report-only",
+    "catalog": "node src/catalog/export.js",
+    "eval:dataset": "node src/eval/dataset.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "openai": "^7.39.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "vitest": "^5.0.5"
+  },
+  "type": "module",
+  "private": true
+}

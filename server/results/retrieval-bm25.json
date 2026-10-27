@@ -1,0 +1,274 @@
+{
+ "mode": "bm25",
+ "scenarios": 88,
+ "results": {
+  "k5": {
+   "k": 5,
+   "recall": 1,
+   "scenarioFullRecall": 1,
+   "avgToolsSent": 33.9,
+   "avgMs": 0.47,
+   "misses": []
+  },
+  "k10": {
+   "k": 10,
+   "recall": 1,
+   "scenarioFullRecall": 1,
+   "avgToolsSent": 34.8,
+   "avgMs": 0.19,
+   "misses": []
+  },
+  "k14": {
+   "k": 14,
+   "recall": 1,
+   "scenarioFullRecall": 1,
+   "avgToolsSent": 36.5,
+   "avgMs": 0.19,
+   "misses": []
+  },
+  "k20": {
+   "k": 20,
+   "recall": 1,
+   "scenarioFullRecall": 1,
+   "avgToolsSent": 38.9,
+   "avgMs": 0.19,
+   "misses": []
+  }
+ },
+ "holdout": {
+  "k5": {
+   "k": 5,
+   "recall": 0.8,
+   "misses": [
+    {
+     "query": "turn the webinar nurture back on",
+     "expected": [
+      "campaigns.resume"
+     ],
+     "top": [
+      "events.create",
+      "events.get",
+      "events.check_in",
+      "events.cancel_registration",
+      "events.add_to_waitlist"
+     ]
+    },
+    {
+     "query": "make Tom a viewer too",
+     "expected": [
+      "users.assign_role"
+     ],
+     "top": []
+    },
+    {
+     "query": "what did we earn last month vs the month before",
+     "expected": [
+      "reports.compare_periods"
+     ],
+     "top": [
+      "enrollments.progress",
+      "funnels.set_goal",
+      "lessons.set_completion_criteria",
+      "sms.cancel_scheduled",
+      "workflows.validate"
+     ]
+    },
+    {
+     "query": "bump Leo Price up to the annual starter plan",
+     "expected": [
+      "subscriptions.change_plan"
+     ],
+     "top": [
+      "prices.update_label",
+      "prices.get",
+      "prices.set_default",
+      "prices.archive",
+      "prices.set_currency"
+     ]
+    },
+    {
+     "query": "dupe check: merge michael and mike brown",
+     "expected": [
+      "contacts.merge_duplicates"
+     ],
+     "top": [
+      "events.check_in",
+      "memberships.check_access",
+      "availability.check_conflicts",
+      "refunds.refundable_balance",
+      "events.get"
+     ]
+    }
+   ]
+  },
+  "k10": {
+   "k": 10,
+   "recall": 0.8,
+   "misses": [
+    {
+     "query": "turn the webinar nurture back on",
+     "expected": [
+      "campaigns.resume"
+     ],
+     "top": [
+      "events.create",
+      "events.get",
+      "events.check_in",
+      "events.cancel_registration",
+      "events.add_to_waitlist"
+     ]
+    },
+    {
+     "query": "make Tom a viewer too",
+     "expected": [
+      "users.assign_role"
+     ],
+     "top": []
+    },
+    {
+     "query": "what did we earn last month vs the month before",
+     "expected": [
+      "reports.compare_periods"
+     ],
+     "top": [
+      "enrollments.progress",
+      "funnels.set_goal",
+      "lessons.set_completion_criteria",
+      "sms.cancel_scheduled",
+      "workflows.validate"
+     ]
+    },
+    {
+     "query": "bump Leo Price up to the annual starter plan",
+     "expected": [
+      "subscriptions.change_plan"
+     ],
+     "top": [
+      "prices.update_label",
+      "prices.get",
+      "prices.set_default",
+      "prices.archive",
+      "prices.set_currency"
+     ]
+    },
+    {
+     "query": "dupe check: merge michael and mike brown",
+     "expected": [
+      "contacts.merge_duplicates"
+     ],
+     "top": [
+      "events.check_in",
+      "memberships.check_access",
+      "availability.check_conflicts",
+      "refunds.refundable_balance",
+      "events.get"
+     ]
+    }
+   ]
+  },
+  "k14": {
+   "k": 14,
+   "recall": 0.84,
+   "misses": [
+    {
+     "query": "turn the webinar nurture back on",
+     "expected": [
+      "campaigns.resume"
+     ],
+     "top": [
+      "events.create",
+      "events.get",
+      "events.check_in",
+      "events.cancel_registration",
+      "events.add_to_waitlist"
+     ]
+    },
+    {
+     "query": "make Tom a viewer too",
+     "expected": [
+      "users.assign_role"
+     ],
+     "top": []
+    },
+    {
+     "query": "what did we earn last month vs the month before",
+     "expected": [
+      "reports.compare_periods"
+     ],
+     "top": [
+      "enrollments.progress",
+      "funnels.set_goal",
+      "lessons.set_completion_criteria",
+      "sms.cancel_scheduled",
+      "workflows.validate"
+     ]
+    },
+    {
+     "query": "dupe check: merge michael and mike brown",
+     "expected": [
+      "contacts.merge_duplicates"
+     ],
+     "top": [
+      "events.check_in",
+      "memberships.check_access",
+      "availability.check_conflicts",
+      "refunds.refundable_balance",
+      "events.get"
+     ]
+    }
+   ]
+  },
+  "k20": {
+   "k": 20,
+   "recall": 0.84,
+   "misses": [
+    {
+     "query": "turn the webinar nurture back on",
+     "expected": [
+      "campaigns.resume"
+     ],
+     "top": [
+      "events.create",
+      "events.get",
+      "events.check_in",
+      "events.cancel_registration",
+      "events.add_to_waitlist"
+     ]
+    },
+    {
+     "query": "make Tom a viewer too",
+     "expected": [
+      "users.assign_role"
+     ],
+     "top": []
+    },
+    {
+     "query": "what did we earn last month vs the month before",
+     "expected": [
+      "reports.compare_periods"
+     ],
+     "top": [
+      "enrollments.progress",
+      "funnels.set_goal",
+      "lessons.set_completion_criteria",
+      "sms.cancel_scheduled",
+      "workflows.validate"
+     ]
+    },
+    {
+     "query": "dupe check: merge michael and mike brown",
+     "expected": [
+      "contacts.merge_duplicates"
+     ],
+     "top": [
+      "events.check_in",
+      "memberships.check_access",
+      "availability.check_conflicts",
+      "refunds.refundable_balance",
+      "events.get"
+     ]
+    }
+   ]
+  }
+ }
+}

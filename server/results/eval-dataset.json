@@ -1,0 +1,2980 @@
+{
+  "version": 1,
+  "fixedNow": "2026-10-15T10:00:00.000Z",
+  "seed": 42,
+  "totals": {
+    "scenarios": 114,
+    "byCategory": {
+      "direct": 50,
+      "indirect": 10,
+      "multi_step": 14,
+      "conditional": 8,
+      "follow_up": 10,
+      "ambiguous": 8,
+      "unsupported": 6,
+      "failure": 8
+    },
+    "modulesCovered": 50,
+    "modulesTotal": 50
+  },
+  "scenarios": [
+    {
+      "id": "D01-contacts-create",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "contacts"
+      ],
+      "turns": [
+        "Create a contact named Sarah Lee with the email sarah.lee@acme.io"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "contacts.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [
+          "contacts.create params"
+        ],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "contact exists"
+        ]
+      }
+    },
+    {
+      "id": "D02-companies-create",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "companies"
+      ],
+      "turns": [
+        "Add a new company called Brightline Robotics (brightline.io), they are in manufacturing."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "companies.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "company exists"
+        ]
+      }
+    },
+    {
+      "id": "D03-leads-create",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "leads"
+      ],
+      "turns": [
+        "New lead: Daniel Kim, daniel.kim@example.org — he was referred by a customer."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "leads.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [
+          "leads.create params"
+        ],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "lead exists with referral source"
+        ]
+      }
+    },
+    {
+      "id": "D04-opportunities-won",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "opportunities"
+      ],
+      "turns": [
+        "Mark the Globex reseller pilot deal as won."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "opportunities.mark_won"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "deal won"
+        ]
+      }
+    },
+    {
+      "id": "D05-pipelines-add-stage",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "pipelines"
+      ],
+      "turns": [
+        "Add a stage called 'Contract Sent' to the Sales Pipeline."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "pipelines.add_stage"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "stage added"
+        ]
+      }
+    },
+    {
+      "id": "D06-tasks-create",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "tasks",
+        "contacts"
+      ],
+      "turns": [
+        "Remind me to call Wyatt Smith tomorrow at 3pm."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tasks.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [
+          "tasks.create params"
+        ],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "task for Wyatt due tomorrow 15:00"
+        ]
+      }
+    },
+    {
+      "id": "D07-notes-create",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "notes",
+        "contacts"
+      ],
+      "turns": [
+        "Add a note to Sarah Johnson: she wants a discount on annual billing."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "notes.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "note attached"
+        ]
+      }
+    },
+    {
+      "id": "D08-tags-apply",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "tags",
+        "contacts"
+      ],
+      "turns": [
+        "Tag Laura Chen as hot-lead."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tags.apply"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "tag applied"
+        ]
+      }
+    },
+    {
+      "id": "D09-smart-lists-count",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "smart_lists"
+      ],
+      "turns": [
+        "How many contacts are in the VIP customers smart list?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "smart_lists.count | smart_lists.preview"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "reply has the count"
+        ]
+      }
+    },
+    {
+      "id": "D10-custom-fields-option",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "custom_fields"
+      ],
+      "turns": [
+        "Add 'education' as an option to the contact Industry dropdown field."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "custom_fields.add_option"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "option added"
+        ]
+      }
+    },
+    {
+      "id": "D11-conversations-unanswered",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "conversations"
+      ],
+      "turns": [
+        "Which conversations are still waiting on a reply from us?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "conversations.list_unanswered | conversations.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "reply has the count"
+        ]
+      }
+    },
+    {
+      "id": "D12-sms-send",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "sms",
+        "contacts"
+      ],
+      "turns": [
+        "Text Ryan Patel: 'Your order has shipped!'"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "sms.send"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "sms sent to Ryan"
+        ]
+      }
+    },
+    {
+      "id": "D13-email-send",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "email",
+        "contacts"
+      ],
+      "turns": [
+        "Email Freya Walsh with the subject 'Workshop recording' and let her know the recording link is coming tomorrow."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "email.send"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "email sent to Freya"
+        ]
+      }
+    },
+    {
+      "id": "D14-templates-create",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "templates"
+      ],
+      "turns": [
+        "Create an SMS template called 'Appointment confirmed' that says: Hi {{first_name}}, your appointment is confirmed."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "templates.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "sms template exists"
+        ]
+      }
+    },
+    {
+      "id": "D15-campaigns-pause",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "campaigns"
+      ],
+      "turns": [
+        "Pause the Google Search Q4 campaign."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "campaigns.pause"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "paused"
+        ]
+      }
+    },
+    {
+      "id": "D16-workflows-history",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "workflows"
+      ],
+      "turns": [
+        "Did any runs of the New lead welcome workflow fail?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "workflows.execution_history"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/fail|error|template/i",
+        "finalState": [
+          "mentions 1 failure"
+        ]
+      }
+    },
+    {
+      "id": "D17-triggers-disable",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "triggers"
+      ],
+      "turns": [
+        "Turn off the 'Lead created' trigger."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "triggers.disable"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "disabled"
+        ]
+      }
+    },
+    {
+      "id": "D18-forms-publish",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "forms"
+      ],
+      "turns": [
+        "Publish the Webinar registration form."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "forms.publish"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "published"
+        ]
+      }
+    },
+    {
+      "id": "D19-surveys-nps",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "surveys"
+      ],
+      "turns": [
+        "What's our NPS from the Customer NPS Q3 survey?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "surveys.response_summary"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "reply has NPS 25"
+        ]
+      }
+    },
+    {
+      "id": "D20-calendars-buffer",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "calendars"
+      ],
+      "turns": [
+        "Set a 15 minute buffer between meetings on the Discovery Call calendar."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "calendars.set_buffer"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "buffer 15"
+        ]
+      }
+    },
+    {
+      "id": "D21-appointments-cancel",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "appointments",
+        "contacts"
+      ],
+      "turns": [
+        "Cancel Sarah Johnson's demo tomorrow."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "appointments.cancel"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "cancelled",
+          "no other appointment touched"
+        ]
+      }
+    },
+    {
+      "id": "D22-availability-block",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "availability",
+        "users"
+      ],
+      "turns": [
+        "Block Priya Shah's calendar next Monday from 9am to 12pm UTC for a dentist appointment."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "availability.block_time"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "block added"
+        ]
+      }
+    },
+    {
+      "id": "D23-booking-pages-message",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "booking_pages"
+      ],
+      "turns": [
+        "Change the confirmation message on the discovery call booking page to 'Thanks — see you soon!'"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "booking_pages.set_confirmation_message"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "message set"
+        ]
+      }
+    },
+    {
+      "id": "D24-events-seats",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "events"
+      ],
+      "turns": [
+        "How many seats are left for the Customer Meetup NYC?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "events.get | events.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "reply has 49"
+        ]
+      }
+    },
+    {
+      "id": "D25-products-inventory",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "products"
+      ],
+      "turns": [
+        "Set the Water Bottle inventory to 120 units."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "products.set_inventory"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "inventory 120"
+        ]
+      }
+    },
+    {
+      "id": "D26-prices-trial",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "prices",
+        "products"
+      ],
+      "turns": [
+        "Give the Growth Plan monthly price a 30-day free trial."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "prices.set_trial"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "trial 30 on growth monthly",
+          "annual untouched"
+        ]
+      }
+    },
+    {
+      "id": "D27-quotes-discount",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "quotes"
+      ],
+      "turns": [
+        "Apply a 15% discount to quote Q-2003."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "quotes.apply_discount"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "discount set"
+        ]
+      }
+    },
+    {
+      "id": "D28-invoices-line-item",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "invoices"
+      ],
+      "turns": [
+        "Add 2 hours of consulting at $150/hour to draft invoice INV-1069."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "invoices.add_line_item"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "line added",
+          "total updated"
+        ]
+      }
+    },
+    {
+      "id": "D29-payments-record",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "payments",
+        "invoices"
+      ],
+      "turns": [
+        "Record a $298 card payment from Leo Price for invoice INV-1041."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "payments.record"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [
+          "payments.record params"
+        ],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "invoice paid",
+          "payment exists"
+        ]
+      }
+    },
+    {
+      "id": "D30-subscriptions-pause",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "subscriptions"
+      ],
+      "turns": [
+        "Pause Lily Ito's subscription."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "subscriptions.pause"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "paused"
+        ]
+      }
+    },
+    {
+      "id": "D31-coupons-create",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "coupons"
+      ],
+      "turns": [
+        "Create a coupon code BLACKFRIDAY30 for 30% off."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "coupons.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "coupon exists"
+        ]
+      }
+    },
+    {
+      "id": "D32-orders-fulfill",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "orders"
+      ],
+      "turns": [
+        "Mark Ryan Patel's order as fulfilled — tracking number 1Z12345."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "orders.mark_fulfilled"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "fulfilled"
+        ]
+      }
+    },
+    {
+      "id": "D33-refunds-approve",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "refunds"
+      ],
+      "turns": [
+        "Approve Julian Ortiz's pending refund request."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "refunds.approve"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "approved"
+        ]
+      }
+    },
+    {
+      "id": "D34-tax-rate",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "tax_rules"
+      ],
+      "turns": [
+        "Change the New York sales tax rate to 8.5%."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tax_rules.set_rate"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "rate 8.5"
+        ]
+      }
+    },
+    {
+      "id": "D35-websites-page",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "websites"
+      ],
+      "turns": [
+        "Add a Careers page to the Northwind Main Site."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "websites.add_page"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "page added"
+        ]
+      }
+    },
+    {
+      "id": "D36-funnels-metrics",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "funnels"
+      ],
+      "turns": [
+        "What's the overall conversion rate of the Fall Promo Funnel?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "funnels.conversion_metrics"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/1\\.3\\s?%|1\\.28/",
+        "finalState": []
+      }
+    },
+    {
+      "id": "D37-landing-unpublish",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "landing_pages"
+      ],
+      "turns": [
+        "Unpublish the Thank You landing page."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "landing_pages.unpublish"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "unpublished"
+        ]
+      }
+    },
+    {
+      "id": "D38-blogs-schedule",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "blogs"
+      ],
+      "turns": [
+        "Schedule the 'Fall product update' blog post for October 20 at 9am UTC."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "blogs.schedule"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "scheduled"
+        ]
+      }
+    },
+    {
+      "id": "D39-media-alt",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "media"
+      ],
+      "turns": [
+        "Set the alt text of logo.png to 'Northwind company logo'."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "media.set_alt_text"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "alt text"
+        ]
+      }
+    },
+    {
+      "id": "D40-courses-section",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "courses"
+      ],
+      "turns": [
+        "Add a 'Reporting' section to the CRM Fundamentals course."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "courses.add_section"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "section added"
+        ]
+      }
+    },
+    {
+      "id": "D41-lessons-publish",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "lessons"
+      ],
+      "turns": [
+        "Publish the 'Branching logic' lesson."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "lessons.publish"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "published"
+        ]
+      }
+    },
+    {
+      "id": "D42-enrollments-enroll",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "enrollments",
+        "courses"
+      ],
+      "turns": [
+        "Enroll Sarah Johnson in the CRM Fundamentals course."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "enrollments.enroll"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "enrolled"
+        ]
+      }
+    },
+    {
+      "id": "D43-communities-remove",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "communities"
+      ],
+      "turns": [
+        "Remove the reported spam post from the customer community."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "communities.remove_reported_post"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "removed",
+          "others intact"
+        ]
+      }
+    },
+    {
+      "id": "D44-memberships-grant",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "memberships"
+      ],
+      "turns": [
+        "Give Sarah Miller the Pro Learning membership."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "memberships.grant"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "granted"
+        ]
+      }
+    },
+    {
+      "id": "D45-reviews-draft-response",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "reviews"
+      ],
+      "turns": [
+        "Draft a reply to James Kaur's 1-star Google review — apologize and offer a call."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "reviews.draft_response"
+        ],
+        "forbiddenActions": [
+          "reviews.publish_response"
+        ],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "draft response"
+        ]
+      }
+    },
+    {
+      "id": "D46-listings-name",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "listings"
+      ],
+      "turns": [
+        "Rename our Yelp listing to 'Northwind CRM'."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "listings.update_name"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "renamed"
+        ]
+      }
+    },
+    {
+      "id": "D47-tickets-assign",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "tickets",
+        "users"
+      ],
+      "turns": [
+        "Assign the urgent 'Cannot log in' ticket to Grace Chen."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tickets.assign_owner"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "assigned",
+          "medium one untouched"
+        ]
+      }
+    },
+    {
+      "id": "D48-users-invite",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "users"
+      ],
+      "turns": [
+        "Invite Jordan Blake (jordan@northwind.example) as a marketing user."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "users.invite"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "invited"
+        ]
+      }
+    },
+    {
+      "id": "D49-teams-manager",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "teams",
+        "users"
+      ],
+      "turns": [
+        "Make Priya Shah the manager of the Sales team."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "teams.assign_manager"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "manager set"
+        ]
+      }
+    },
+    {
+      "id": "D50-reports-leads-by-source",
+      "category": "direct",
+      "latencyGroup": "direct",
+      "modules": [
+        "reports",
+        "leads"
+      ],
+      "turns": [
+        "How many new leads did we get in the last 7 days, broken down by source?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "reports.run | leads.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "reply has total"
+        ]
+      }
+    },
+    {
+      "id": "M01-catalog-complex-followup",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "leads",
+        "conversations",
+        "appointments",
+        "teams",
+        "users",
+        "tasks"
+      ],
+      "turns": [
+        "Find leads created last week who have not replied, exclude anyone with a booked appointment, assign the remaining leads to available sales reps, and create follow-up tasks."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "leads.search",
+          "conversations.search | conversations.list_unanswered",
+          "appointments.search",
+          "tasks.create",
+          "leads.assign_owner | contacts.assign_owner"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "one task per eligible lead",
+          "eligible leads have an owner",
+          "owners are available sales reps",
+          "tasks are owned by the assigned rep"
+        ]
+      }
+    },
+    {
+      "id": "M02-new-leads-no-appointment",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "leads",
+        "appointments",
+        "tasks"
+      ],
+      "turns": [
+        "Find new leads who haven't booked an appointment and create follow-up tasks for them."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "leads.search",
+          "appointments.search",
+          "tasks.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "tasks only for new leads without a booking, covering all of them that lack a follow-up"
+        ]
+      }
+    },
+    {
+      "id": "M03-convert-and-task",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "leads",
+        "opportunities",
+        "tasks",
+        "users"
+      ],
+      "turns": [
+        "Convert Clara Moreau's lead into an opportunity worth $12,000, then create a task for Priya to send her a proposal by Friday."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "leads.convert_to_opportunity",
+          "tasks.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "lead converted",
+          "opportunity 12000",
+          "task for Priya due Friday"
+        ]
+      }
+    },
+    {
+      "id": "M04-assign-unassigned-tickets",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "tickets",
+        "teams",
+        "users"
+      ],
+      "turns": [
+        "Assign every unassigned open support ticket to whoever on the Support team has the lightest workload."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tickets.search",
+          "teams.workload | users.list | teams.get",
+          "tickets.assign_owner"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "all unassigned open tickets now owned by support staff",
+          "already-assigned tickets unchanged"
+        ]
+      }
+    },
+    {
+      "id": "M05-churn-risk-calls",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "contacts",
+        "tasks"
+      ],
+      "turns": [
+        "For every contact tagged churn-risk, create a high-priority task for their owner to call them this week."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "contacts.search",
+          "tasks.create"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [
+          "tasks.create params"
+        ],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "one high-priority task per churn-risk contact",
+          "owned by the contact owner when there is one",
+          "due this week"
+        ]
+      }
+    },
+    {
+      "id": "M06-invoice-and-send",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "invoices",
+        "products",
+        "contacts"
+      ],
+      "turns": [
+        "Create an invoice for Emma Patel for the Strategy Workshop and send it to her."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "invoices.create | invoices.add_line_item",
+          "invoices.issue"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "issued invoice with the workshop"
+        ]
+      }
+    },
+    {
+      "id": "M07-book-and-email",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "appointments",
+        "calendars",
+        "email",
+        "contacts"
+      ],
+      "turns": [
+        "Book Sarah Miller a Discovery Call next Tuesday at 2pm UTC and email her a confirmation."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "appointments.create",
+          "email.send"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "appointment booked",
+          "confirmation email sent"
+        ]
+      }
+    },
+    {
+      "id": "M08-push-overdue-tasks",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "tasks"
+      ],
+      "turns": [
+        "Push the due date of every overdue task to next Monday."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tasks.search",
+          "tasks.set_due_date"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "every overdue open task now due next Monday",
+          "non-overdue tasks untouched"
+        ]
+      }
+    },
+    {
+      "id": "M09-tag-big-debtors",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "invoices",
+        "tags",
+        "contacts"
+      ],
+      "turns": [
+        "Tag everyone with an unpaid invoice over $1,000 as 'collections'."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "invoices.search | invoices.list_overdue",
+          "tags.apply"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "exactly those contacts tagged"
+        ]
+      }
+    },
+    {
+      "id": "M10-review-requests-after-meetings",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "appointments",
+        "reviews"
+      ],
+      "turns": [
+        "Ask everyone whose appointment was completed in the last two weeks for a review by email."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "appointments.search",
+          "reviews.create_request",
+          "reviews.send_request"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "review requests sent to exactly those contacts"
+        ]
+      }
+    },
+    {
+      "id": "M11-campaign-setup",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "campaigns"
+      ],
+      "turns": [
+        "Set up an email campaign called 'Black Friday 2026' for contacts tagged vip, with a first message 'Early access for VIPs', starting November 27 at 9am UTC. Don't launch it yet."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "campaigns.create",
+          "campaigns.set_audience",
+          "campaigns.add_step",
+          "campaigns.set_schedule"
+        ],
+        "forbiddenActions": [
+          "campaigns.launch"
+        ],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "campaign configured"
+        ]
+      }
+    },
+    {
+      "id": "M12-coupon-on-order",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "coupons",
+        "orders"
+      ],
+      "turns": [
+        "Create a coupon WELCOME10 for 10% off, apply it to Kenji Foster's draft order, and tell me the new total."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "coupons.create",
+          "orders.apply_coupon"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "coupon applied",
+          "reply has new total"
+        ]
+      }
+    },
+    {
+      "id": "M13-automation-new-leads",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "workflows",
+        "triggers"
+      ],
+      "turns": [
+        "Set up an automation: whenever a new lead is created, create a follow-up task due the next day. Turn it on."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "workflows.create",
+          "workflows.publish",
+          "triggers.create | triggers.bind_workflow",
+          "triggers.enable"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "published workflow with a create_task step bound to an enabled lead.created trigger"
+        ]
+      }
+    },
+    {
+      "id": "M14-account-brief",
+      "category": "multi_step",
+      "latencyGroup": "complex",
+      "modules": [
+        "contacts",
+        "opportunities",
+        "invoices",
+        "appointments"
+      ],
+      "turns": [
+        "Give me a quick brief on Sarah Johnson: her open deals, unpaid invoices and upcoming appointments."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "contacts.search",
+          "opportunities.search",
+          "invoices.search | invoices.list_overdue",
+          "appointments.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "mentions deal value",
+          "mentions invoice",
+          "mentions demo"
+        ]
+      }
+    },
+    {
+      "id": "C01-catalog-overdue-reminders",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "invoices",
+        "email",
+        "templates"
+      ],
+      "turns": [
+        "For unpaid invoices overdue by more than 15 days, draft reminders, but skip customers who already received one this week."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "invoices.list_overdue | invoices.search",
+          "email.search",
+          "email.draft"
+        ],
+        "forbiddenActions": [
+          "email.send",
+          "invoices.send_reminder"
+        ],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "a draft for exactly the right invoices",
+          "nothing was sent"
+        ]
+      }
+    },
+    {
+      "id": "C02-remind-big-overdue",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "invoices",
+        "email"
+      ],
+      "turns": [
+        "Send payment reminders for invoices more than 30 days overdue, but only where the balance is over $1,000."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "invoices.list_overdue | invoices.search",
+          "invoices.send_reminder | email.send"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "reminders sent for exactly those invoices"
+        ]
+      }
+    },
+    {
+      "id": "C03-urgent-unassigned",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "tickets",
+        "users"
+      ],
+      "turns": [
+        "If any urgent ticket is still unassigned, give it to Tom Becker. Otherwise leave everything as is."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tickets.search",
+          "tickets.assign_owner"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "unassigned urgent -> Tom",
+          "others untouched"
+        ]
+      }
+    },
+    {
+      "id": "C04-stale-negotiations",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "opportunities",
+        "pipelines"
+      ],
+      "turns": [
+        "For deals in the Negotiation stage whose expected close date has already passed, push the close date out by two weeks."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "opportunities.search",
+          "opportunities.set_close_date"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "only stale negotiation deals moved by 2 weeks"
+        ]
+      }
+    },
+    {
+      "id": "C05-cancel-optout-sms",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "sms",
+        "contacts"
+      ],
+      "turns": [
+        "Cancel any scheduled text messages going to contacts who have opted out of SMS."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "sms.search"
+        ],
+        "forbiddenActions": [
+          "sms.cancel_scheduled"
+        ],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "scheduled sms to opted-in contact untouched",
+          "reply says none"
+        ]
+      }
+    },
+    {
+      "id": "C06-disqualify-stale-leads",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "leads"
+      ],
+      "turns": [
+        "Disqualify leads older than 60 days that are still 'new', with the reason 'No response in 60 days'."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "leads.search",
+          "leads.disqualify"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [
+          "leads.disqualify params"
+        ],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "exactly the stale new leads disqualified"
+        ]
+      }
+    },
+    {
+      "id": "C07-optout-preferred-channel",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "contacts"
+      ],
+      "turns": [
+        "For contacts who have opted out of SMS, make sure their preferred channel is set to email."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "contacts.search | smart_lists.create",
+          "contacts.set_communication_preferences"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "opted-out contacts prefer email",
+          "nobody else changed"
+        ]
+      }
+    },
+    {
+      "id": "C08-refund-threshold",
+      "category": "conditional",
+      "latencyGroup": "complex",
+      "modules": [
+        "refunds"
+      ],
+      "turns": [
+        "Approve refund requests under $50 and reject the rest."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "refunds.search",
+          "refunds.approve",
+          "refunds.reject"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "small one approved",
+          "large one rejected"
+        ]
+      }
+    },
+    {
+      "id": "I01-catalog-forget-followups",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "leads",
+        "tasks",
+        "workflows",
+        "triggers"
+      ],
+      "turns": [
+        "I keep forgetting to follow up with new leads. Help me stay on top of them."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "created follow-up tasks for new leads OR set up an automation",
+          "tasks (if any) only target new leads"
+        ]
+      }
+    },
+    {
+      "id": "I02-support-inbox",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "conversations"
+      ],
+      "turns": [
+        "Our support inbox is getting out of hand, customers are waiting on us."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "conversations.list_unanswered | conversations.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "reports how many are waiting"
+        ]
+      }
+    },
+    {
+      "id": "I03-late-payers",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "invoices"
+      ],
+      "turns": [
+        "We're losing money on people who don't pay on time."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [
+          "invoices.list_overdue | invoices.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "nothing sent without confirmation"
+        ]
+      }
+    },
+    {
+      "id": "I04-prep-demo",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "contacts",
+        "opportunities",
+        "notes",
+        "appointments"
+      ],
+      "turns": [
+        "Sarah Johnson's demo is tomorrow and I want to be prepared."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "contacts.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "pulled context from 2+ modules",
+          "mentions something relevant"
+        ]
+      }
+    },
+    {
+      "id": "I05-cover-out-of-office",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "users",
+        "tasks",
+        "leads",
+        "teams"
+      ],
+      "turns": [
+        "Hannah is out this week — make sure her work doesn't fall through the cracks."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "tasks.search | leads.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "Hannah has no open tasks left",
+          "reassigned to available reps"
+        ]
+      }
+    },
+    {
+      "id": "I06-no-shows",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "appointments"
+      ],
+      "turns": [
+        "Too many people are no-showing to their appointments lately."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "appointments.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "names at least one no-show"
+        ]
+      }
+    },
+    {
+      "id": "I07-best-channel",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "reports",
+        "leads"
+      ],
+      "turns": [
+        "I'd like to know which marketing channel brings us the most leads."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "reports.run | leads.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "names the top source"
+        ]
+      }
+    },
+    {
+      "id": "I08-hoodie-stock",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "products"
+      ],
+      "turns": [
+        "The hoodie keeps selling out."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "products.inventory_availability | products.get | products.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "mentions the out-of-stock size"
+        ]
+      }
+    },
+    {
+      "id": "I09-bad-review",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "reviews"
+      ],
+      "turns": [
+        "Nobody has responded to Ryan Foster's bad review yet."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "reviews.draft_response"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "response prepared on that review"
+        ]
+      }
+    },
+    {
+      "id": "I10-listing-mismatch",
+      "category": "indirect",
+      "latencyGroup": "other",
+      "modules": [
+        "listings"
+      ],
+      "turns": [
+        "Our Yelp profile looks different from our Google one."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "listings.sync_status | listings.get | listings.search"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "identifies the difference",
+          "if changed, Yelp now matches Google"
+        ]
+      }
+    },
+    {
+      "id": "F01-catalog-refine-followups",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "leads",
+        "conversations",
+        "appointments",
+        "tasks",
+        "campaigns"
+      ],
+      "turns": [
+        "Find leads created last week who have not replied, exclude anyone with a booked appointment, assign the remaining leads to available sales reps, and create follow-up tasks.",
+        "Only include leads from the Facebook campaign, and make those tasks due tomorrow."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "open follow-up tasks only for the Facebook subset",
+          "all due tomorrow"
+        ]
+      }
+    },
+    {
+      "id": "F02-overdue-then-remind-except",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "invoices",
+        "email"
+      ],
+      "turns": [
+        "Show me invoices more than 20 days overdue.",
+        "Send reminders for all of them except Aaron Ortiz."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "invoices.list_overdue | invoices.search",
+          "invoices.send_reminder | email.send"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "reminders for exactly the right invoices (unsubscribed ones fail)",
+          "first turn sent nothing"
+        ]
+      }
+    },
+    {
+      "id": "F03-change-task",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "tasks",
+        "contacts"
+      ],
+      "turns": [
+        "Create a task to call Wyatt Smith tomorrow.",
+        "Actually make it Thursday next week, and high priority."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "one open task for Wyatt, Thursday next week, high"
+        ]
+      }
+    },
+    {
+      "id": "F04-tag-the-vips",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "contacts",
+        "tags"
+      ],
+      "turns": [
+        "Find contacts tagged vip.",
+        "Add the tag 'priority-support' to all of them."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "contacts.search",
+          "tags.apply"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "all vips tagged"
+        ]
+      }
+    },
+    {
+      "id": "F05-draft-then-send",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "email"
+      ],
+      "turns": [
+        "Draft an email to Sarah Johnson thanking her for her time today.",
+        "Looks good — send it."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "email.draft",
+          "email.send"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "exactly one email, now sent"
+        ]
+      }
+    },
+    {
+      "id": "F06-biggest-deal",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "opportunities",
+        "pipelines",
+        "users"
+      ],
+      "turns": [
+        "How many open deals does Priya own?",
+        "Move the biggest one to the Negotiation stage."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "biggest deal handled correctly",
+          "first answer has the count"
+        ]
+      }
+    },
+    {
+      "id": "F07-extend-trial",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "subscriptions"
+      ],
+      "turns": [
+        "List the subscriptions that are still in trial.",
+        "Extend that trial by two weeks."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "subscriptions.search",
+          "subscriptions.set_trial_end"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "trial +14 days"
+        ]
+      }
+    },
+    {
+      "id": "F08-lead-then-assign",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "leads",
+        "users"
+      ],
+      "turns": [
+        "Create a lead for Maria Gomez, maria.gomez@example.com, she came from our website.",
+        "Assign her to Elena and set her score to 80."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "leads.create",
+          "leads.assign_owner",
+          "leads.update_score"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "lead updated"
+        ]
+      }
+    },
+    {
+      "id": "F09-event-registrations",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "events",
+        "contacts"
+      ],
+      "turns": [
+        "Who is registered for the Customer Meetup NYC?",
+        "Also register Sarah Miller and Laura Chen."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "events.register"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "both registered",
+          "first reply names Sarah Johnson"
+        ]
+      }
+    },
+    {
+      "id": "F10-webinar-tasks-then-assign",
+      "category": "follow_up",
+      "latencyGroup": "complex",
+      "modules": [
+        "leads",
+        "tasks",
+        "users"
+      ],
+      "turns": [
+        "Create a follow-up task for each webinar lead that is still new.",
+        "Assign all of those tasks to Omar."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "tasks for the new webinar leads, owned by Omar"
+        ]
+      }
+    },
+    {
+      "id": "A01-which-sarah",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "sms",
+        "contacts"
+      ],
+      "turns": [
+        "Send Sarah a text saying her demo was moved."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": [
+          "asks which Sarah"
+        ]
+      }
+    },
+    {
+      "id": "A02-invoice-missing-details",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "invoices"
+      ],
+      "turns": [
+        "Create an invoice."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/\\?/",
+        "finalState": []
+      }
+    },
+    {
+      "id": "A03-which-lead",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "leads"
+      ],
+      "turns": [
+        "Assign the lead to Marcus."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/\\?/",
+        "finalState": []
+      }
+    },
+    {
+      "id": "A04-meeting-no-time",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "appointments"
+      ],
+      "turns": [
+        "Book a meeting with Mike next week."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/\\?/",
+        "finalState": []
+      }
+    },
+    {
+      "id": "A05-which-price",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "prices"
+      ],
+      "turns": [
+        "Change the price to $59."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/\\?/",
+        "finalState": []
+      }
+    },
+    {
+      "id": "A06-schedule-newsletter",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "campaigns"
+      ],
+      "turns": [
+        "Schedule the newsletter."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [
+          "campaigns.launch",
+          "campaigns.set_schedule"
+        ],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": "/\\?/",
+        "finalState": []
+      }
+    },
+    {
+      "id": "A07-which-sarah-resolved",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "sms",
+        "contacts"
+      ],
+      "turns": [
+        "Send Sarah a text saying her demo was moved.",
+        "Sarah Johnson"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [
+          "sms.send"
+        ],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "texted Sarah Johnson only"
+        ]
+      }
+    },
+    {
+      "id": "A08-which-deal",
+      "category": "ambiguous",
+      "latencyGroup": "other",
+      "modules": [
+        "opportunities"
+      ],
+      "turns": [
+        "Give the deal to Elena."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/\\?/",
+        "finalState": []
+      }
+    },
+    {
+      "id": "U01-instagram",
+      "category": "unsupported",
+      "latencyGroup": "other",
+      "modules": [
+        "campaigns"
+      ],
+      "turns": [
+        "Post our fall promo on Instagram."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/can'?t|cannot|not able|unable|isn'?t (possible|supported|available)|not (supported|available|possible)|no (way|action|integration|capability)|don'?t (have|support)|doesn'?t support|outside/i",
+        "finalState": []
+      }
+    },
+    {
+      "id": "U02-phone-call",
+      "category": "unsupported",
+      "latencyGroup": "other",
+      "modules": [
+        "contacts"
+      ],
+      "turns": [
+        "Call Sarah Johnson on the phone right now."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/can'?t|cannot|not able|unable|isn'?t (possible|supported|available)|not (supported|available|possible)|no (way|action|integration|capability)|don'?t (have|support)|doesn'?t support|outside/i",
+        "finalState": []
+      }
+    },
+    {
+      "id": "U03-google-sheets",
+      "category": "unsupported",
+      "latencyGroup": "other",
+      "modules": [
+        "smart_lists"
+      ],
+      "turns": [
+        "Export all our contacts into a Google Sheet."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [
+          "external",
+          "destructive"
+        ],
+        "parameters": [],
+        "noWrites": false,
+        "reply": "/google sheet|csv|can'?t|cannot|not able|unable/i",
+        "finalState": []
+      }
+    },
+    {
+      "id": "U04-weather",
+      "category": "unsupported",
+      "latencyGroup": "other",
+      "modules": [],
+      "turns": [
+        "What's the weather in Paris today?"
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/can'?t|cannot|not able|unable|isn'?t (possible|supported|available)|not (supported|available|possible)|no (way|action|integration|capability)|don'?t (have|support)|doesn'?t support|outside/i",
+        "finalState": []
+      }
+    },
+    {
+      "id": "U05-delete-everything",
+      "category": "unsupported",
+      "latencyGroup": "other",
+      "modules": [],
+      "turns": [
+        "Delete our entire database."
+      ],
+      "autoConfirm": false,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": null,
+        "finalState": []
+      }
+    },
+    {
+      "id": "U06-salesforce",
+      "category": "unsupported",
+      "latencyGroup": "other",
+      "modules": [
+        "contacts"
+      ],
+      "turns": [
+        "Sync our contacts with Salesforce."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": true,
+        "reply": "/can'?t|cannot|not able|unable|isn'?t (possible|supported|available)|not (supported|available|possible)|no (way|action|integration|capability)|don'?t (have|support)|doesn'?t support|outside/i",
+        "finalState": []
+      }
+    },
+    {
+      "id": "X01-event-full",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "events"
+      ],
+      "turns": [
+        "Register Sarah Johnson for the Growth Masterclass."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "not registered (event is full)",
+          "explains it is full"
+        ]
+      }
+    },
+    {
+      "id": "X02-expired-quote",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "quotes"
+      ],
+      "turns": [
+        "Record that Grace Jensen accepted quote Q-1999."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "not accepted",
+          "explains expiry"
+        ]
+      }
+    },
+    {
+      "id": "X03-void-paid",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "invoices"
+      ],
+      "turns": [
+        "Void invoice INV-1060."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "still paid",
+          "explains it is paid"
+        ]
+      }
+    },
+    {
+      "id": "X04-sms-opted-out",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "sms"
+      ],
+      "turns": [
+        "Text Laura Chen that her order is ready for pickup."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "no sms sent",
+          "explains opt-out"
+        ]
+      }
+    },
+    {
+      "id": "X05-archive-busy-pipeline",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "pipelines"
+      ],
+      "turns": [
+        "Archive the Sales Pipeline."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "still active",
+          "explains open deals"
+        ]
+      }
+    },
+    {
+      "id": "X06-remove-busy-stage",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "pipelines"
+      ],
+      "turns": [
+        "Remove the Proposal stage from the Sales Pipeline."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "stage kept",
+          "explains open deals"
+        ]
+      }
+    },
+    {
+      "id": "X07-email-unsubscribed",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "email",
+        "invoices"
+      ],
+      "turns": [
+        "Email Peter Novak a reminder about invoice INV-1053."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "nothing sent",
+          "explains unsubscribe"
+        ]
+      }
+    },
+    {
+      "id": "X08-publish-empty-course",
+      "category": "failure",
+      "latencyGroup": "other",
+      "modules": [
+        "courses"
+      ],
+      "turns": [
+        "Publish the Sales Playbook course."
+      ],
+      "autoConfirm": true,
+      "expected": {
+        "actions": [],
+        "forbiddenActions": [],
+        "forbiddenEffects": [],
+        "parameters": [],
+        "noWrites": false,
+        "reply": null,
+        "finalState": [
+          "still draft",
+          "explains why"
+        ]
+      }
+    }
+  ]
+}
